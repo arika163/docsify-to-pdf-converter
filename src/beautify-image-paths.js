@@ -8,10 +8,10 @@ const isImg = filePath => {
   return extName === ".jpg" || extName === ".png" || extName === ".gif";
 };
 
-module.exports = ({ pathToStatic }) => (content, filePath) => {
+module.exports = ({ pathToStatic, pathToDocsifyEntryPoint }) => (content, filePath) => {
   let markdown = content;
   const dir = path.dirname(filePath);
-  const static = path.resolve(process.cwd(), pathToStatic);
+  const static = path.resolve(pathToDocsifyEntryPoint, pathToStatic);
 
   markdownLinkExtractor(content)
     .filter(link => !isUrl(link))
